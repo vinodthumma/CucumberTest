@@ -12,7 +12,7 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(
 		features = "Feature/LogIn_Test.feature"
 		,glue={"stepDefinition"}
-		,plugin = {"pretty","html:target\\cucumber"}
+		,plugin = {"pretty","html:target\\cucumber","json:target\\cucumber.json"}
 		,tags= {"@tag4"}
 		)
 public class TestRunner{
