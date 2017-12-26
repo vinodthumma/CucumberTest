@@ -83,8 +83,8 @@ public class Login extends KeyWordLibrary {
 	
 	@After
 	public void logout(Scenario scenario) {
-		final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-	      scenario.embed(screenshot, "image/png"); 
+//		final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+//	      scenario.embed(screenshot, "image/png"); 
 		
 //		driver.findElement(Home_Page.Lbl_UserName).click();
 //		driver.findElement(Home_Page.btn_Logout).click();	
