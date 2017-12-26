@@ -37,6 +37,7 @@ public class Login extends KeyWordLibrary {
 		driver.manage().window().maximize();
 				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	    driver.get("https://wwwsysc.sce.com");
+	    myScenario.write("Current Page URL is " + driver.getCurrentUrl());
 	    myScenario.write("User is on SCE HOME PAGE");
 	    Take_A_Screenshot( driver, myScenario);
 	    

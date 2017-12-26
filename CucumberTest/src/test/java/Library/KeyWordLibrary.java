@@ -83,7 +83,7 @@ public void WebElementClick(WebDriver driver,By locator){
  public void Take_A_Screenshot(WebDriver driver,Scenario myScenario) throws Throwable {
 
      try {
-         myScenario.write("Current Page URL is " + driver.getCurrentUrl());
+         
          byte[] screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
          myScenario.embed(screenshot, "image/png");  // Stick it in the report
      } catch (WebDriverException somePlatformsDontSupportScreenshots) {
