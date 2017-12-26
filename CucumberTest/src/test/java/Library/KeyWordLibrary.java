@@ -1,15 +1,21 @@
 package Library;
 
+import java.io.Console;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 //import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import cucumber.api.Scenario;
 
 public class KeyWordLibrary {
 	Properties properties;
@@ -74,7 +80,19 @@ public void WebElementClick(WebDriver driver,By locator){
      }
 
 
+ public void Take_A_Screenshot(WebDriver driver,Scenario myScenario) throws Throwable {
 
+     try {
+         myScenario.write("Current Page URL is " + driver.getCurrentUrl());
+         byte[] screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
+         myScenario.embed(screenshot, "image/png");  // Stick it in the report
+     } catch (WebDriverException somePlatformsDontSupportScreenshots) {
+
+         System.out.println((somePlatformsDontSupportScreenshots.getMessage().toString()));
+     } catch (ClassCastException cce) {
+         cce.printStackTrace();
+     }
+ }
 
 
 }

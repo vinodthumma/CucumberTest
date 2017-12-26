@@ -23,8 +23,10 @@ import Util.ExcelUtil;
 import Library.KeyWordLibrary;
 public class Login extends KeyWordLibrary {
 	static WebDriver driver;
-	@Before public void ad() {
+	private Scenario myScenario;
+	@Before public void embedScreenshotStep(Scenario scenario)  {
 		System.out.println("started test");
+		myScenario = scenario;
 	}
 	
 	
@@ -36,7 +38,7 @@ public class Login extends KeyWordLibrary {
 				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	    driver.get("https://wwwsysc.sce.com");
 	   
-	    
+	    Take_A_Screenshot( driver, myScenario);
 	    
 	}
 
@@ -65,7 +67,8 @@ public class Login extends KeyWordLibrary {
 		String password=ExcelUtil.Get(arg3, arg2);
 		driver.findElement(Home_Page.UserName).sendKeys(username);
 		driver.findElement(Home_Page.password).sendKeys(password);
-		driver.findElement(Home_Page.login).click();		
+		driver.findElement(Home_Page.login).click();	
+		Take_A_Screenshot( driver, myScenario);
 	}
 	@Then("^Error message displayed$")
 	public void error_message_displayed() throws Throwable {
