@@ -3,6 +3,8 @@ package stepDefinition;
 import java.util.concurrent.TimeUnit;
 import org.hamcrest.CoreMatchers.*;
 import org.junit.Assert;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -14,6 +16,8 @@ import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import cucumber.runtime.ScenarioImpl;
+import cucumber.api.Scenario;
 import static org.junit.Assert.assertEquals;
 import Util.ExcelUtil;
 import Library.KeyWordLibrary;
@@ -31,6 +35,8 @@ public class Login extends KeyWordLibrary {
 		driver.manage().window().maximize();
 				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	    driver.get("https://wwwsysc.sce.com");
+	   
+	    
 	    
 	}
 
@@ -72,12 +78,15 @@ public class Login extends KeyWordLibrary {
 	    throw new PendingException();
 	}
 	
-//	@After
-//	public void logout() {
+	@After
+	public void logout(Scenario scenario) {
+		final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+	      scenario.embed(screenshot, "image/png"); 
+		
 //		driver.findElement(Home_Page.Lbl_UserName).click();
 //		driver.findElement(Home_Page.btn_Logout).click();	
 //		String a=driver.findElement(Home_Page.Title_Logout).getText();
 //		assertEquals("You have successfully logged out.",a);
 //		driver.quit();
-//	}
+	}
 }
