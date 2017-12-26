@@ -4,8 +4,11 @@ import java.io.Console;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -13,6 +16,8 @@ import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 //import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import cucumber.api.Scenario;
@@ -94,5 +99,19 @@ public void WebElementClick(WebDriver driver,By locator){
      }
  }
 
+ public WebElement getWebElement(final WebDriver driver,final By Locator) {
+//	 WebElement ele=driver.findElement(Locator);
+	 Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)                            
+			 .withTimeout(20, TimeUnit.SECONDS)          
+			 .pollingEvery(5, TimeUnit.SECONDS)          
+			 .ignoring(NoSuchElementException.class);    
+
+			   WebElement ele= wait.until(new Function<WebDriver, WebElement>() {       
+			 public WebElement apply(WebDriver driver) { 
+			 return driver.findElement(Locator);     
+			  }  
+			 });
+			return ele;
+ }
 
 }
