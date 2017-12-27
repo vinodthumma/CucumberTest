@@ -51,7 +51,7 @@ public class Login extends KeyWordLibrary {
 		System.out.println(a);
 		System.out.println(driver.getTitle());
 		assertEquals("Overview | My Account | Home - SCE",driver.getTitle());
-		
+		Take_A_Screenshot( driver, myScenario);
 	}
 	@Then("^User Navigated to My Account Page$")
 	public void user_Navigated_to_My_Account_Page() throws Throwable {
@@ -68,8 +68,9 @@ public class Login extends KeyWordLibrary {
 		findElement(driver,Home_Page.UserName).sendKeys(ExcelUtil.Get(TestCaseID, username));
 //		driver.findElement(Home_Page.UserName).sendKeys(ExcelUtil.Get(TestCaseID, username));
 		driver.findElement(Home_Page.password).sendKeys(ExcelUtil.Get(TestCaseID, password));
-		driver.findElement(Home_Page.login).click();	
 		Take_A_Screenshot( driver, myScenario);
+		driver.findElement(Home_Page.login).click();	
+		
 	}
 	@Then("^Error message displayed$")
 	public void error_message_displayed() throws Throwable {
