@@ -65,7 +65,7 @@ public class Login extends KeyWordLibrary {
 	@When("^User enters \"([^\"]*)\" and \"([^\"]*)\" for \"([^\"]*)\"$")
 	public void user_enters_and_for(String username, String password, String TestCaseID) throws Throwable {
 
-//		getWebElement(driver,Home_Page.UserName).sendKeys("asd");
+		findElement(driver,Home_Page.UserName).sendKeys("asd");
 		driver.findElement(Home_Page.UserName).sendKeys(ExcelUtil.Get(TestCaseID, username));
 		driver.findElement(Home_Page.password).sendKeys(ExcelUtil.Get(TestCaseID, password));
 		driver.findElement(Home_Page.login).click();	

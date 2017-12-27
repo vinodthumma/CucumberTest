@@ -113,5 +113,17 @@ public void WebElementClick(WebDriver driver,By locator){
 			 });
 			return ele;
  }
+ public static WebElement findElement(final WebDriver driver, final By locator) {
+	    FluentWait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+	            .withTimeout(20, TimeUnit.SECONDS)
+	            .pollingEvery(5, TimeUnit.SECONDS)
+	            .ignoring(NoSuchElementException.class);
+
+	    return wait.until(new Function<WebDriver, WebElement>() {
+	        public WebElement apply(WebDriver webDriver) {
+	            return driver.findElement(locator);
+	        }
+	    });
+	}
 
 }
