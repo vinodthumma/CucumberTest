@@ -1,7 +1,7 @@
 Feature: User Registration Action
 Background:
 Given User is on Home Page
-@tag4
+@tag4 @Regression
 Scenario: Successfull Web user registration
 When User clicks on registration button
 Then User Navigates to Registration page

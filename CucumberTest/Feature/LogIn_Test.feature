@@ -1,7 +1,7 @@
 Feature: Login Action
 Background:
 Given User is on Home Page
- @tag1 @tag3 @tag4
+ @tag1 @tag3 @Regression
 Scenario: Successful Login Web user with Valid Credentials
 #	Given User is on Home Page
 	When User enters "UserName" and "Password" for "Test_ID_001"
