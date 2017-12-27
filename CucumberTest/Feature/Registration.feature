@@ -9,4 +9,3 @@ When User Enters First Name, Last Name
 And user enters EMail address and Password
 And user click on Next
 Then User will be navigated to Identify your sce account page
-
