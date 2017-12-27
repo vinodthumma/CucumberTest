@@ -1,4 +1,4 @@
-Feature: Login Action
+Feature: User Registration Action
 Background:
 Given User is on Home Page
 @tag4
