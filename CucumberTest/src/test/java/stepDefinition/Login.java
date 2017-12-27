@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import Object_Repo.Home_Page;
+import Object_Repo.Registration_Objects;
 import cucumber.api.PendingException;
 import cucumber.api.java.After;
 //import cucumber.api.PendingException;
@@ -16,11 +17,11 @@ import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import cucumber.runtime.ScenarioImpl;
 import cucumber.api.Scenario;
 import static org.junit.Assert.assertEquals;
 import Util.ExcelUtil;
 import Library.KeyWordLibrary;
+
 public class Login extends KeyWordLibrary {
 	static WebDriver driver;
 	private Scenario myScenario;
@@ -84,6 +85,62 @@ public class Login extends KeyWordLibrary {
 	@Then("^User Navigated to Third Party Page$")
 	public void user_Navigated_to_Third_Party_Page() throws Throwable {
 	    throw new PendingException();
+	}
+	
+	@When("^User clicks on registration button$")
+	public void user_clicks_on_registration_button() throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+//	    throw new PendingException();
+		findElement(driver,Registration_Objects.Btn_Registration).click();
+		
+		
+	}
+
+	@Then("^User Navigates to Registration page$")
+	public void user_Navigates_to_Registration_page() throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+//	    throw new PendingException();
+		 myScenario.write("Current Page URL is " + driver.getCurrentUrl());
+		    myScenario.write("User is on SCE Registration page");
+		    Take_A_Screenshot( driver, myScenario);
+	}
+
+	@When("^User Enters First Name, Last Name$")
+	public void user_Enters_First_Name_Last_Name() throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+//	    throw new PendingException();
+		findElement(driver,Registration_Objects.Txt_FirstName).sendKeys("FName");
+		findElement(driver,Registration_Objects.Txt_LastName).sendKeys("LName");
+		Take_A_Screenshot( driver, myScenario);
+		
+	}
+
+	@When("^user enters EMail address and Password$")
+	public void user_enters_EMail_address_and_Password() throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+//	    throw new PendingException();
+		findElement(driver,Registration_Objects.Txt_emailAddress).sendKeys("email@gmail.com");
+		findElement(driver,Registration_Objects.Txt_RegisterPassword).sendKeys("Edison123");
+		findElement(driver,Registration_Objects.Txt_ConfirmPassword).sendKeys("Edison123");
+		Take_A_Screenshot( driver, myScenario);
+	}
+
+	@When("^user click on Next$")
+	public void user_click_on_Next() throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+//	    throw new PendingException();
+		findElement(driver,Registration_Objects.Btn_Registration_Next_1).click();
+		Take_A_Screenshot( driver, myScenario);
+		
+	}
+
+	@Then("^User will be navigated to Identify your sce account page$")
+	public void user_will_be_navigated_to_Identify_your_sce_account_page() throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+//	    throw new PendingException();
+	    myScenario.write("Current Page URL is " + driver.getCurrentUrl());
+	    myScenario.write("User is on Identify your sce account page");
+	    Take_A_Screenshot( driver, myScenario);
 	}
 	
 	@After

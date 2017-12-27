@@ -10,7 +10,7 @@ import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-		features = "Feature/LogIn_Test.feature"
+		features = "Feature"
 		,glue={"stepDefinition"}
 		,plugin = {"pretty","html:target\\cucumber","json:target\\cucumber.json"}
 		,tags= {"@tag4"}
