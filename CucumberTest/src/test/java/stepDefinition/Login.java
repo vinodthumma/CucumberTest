@@ -51,6 +51,7 @@ public class Login extends KeyWordLibrary {
 		System.out.println(a);
 		System.out.println(driver.getTitle());
 		assertEquals("Overview | My Account | Home - SCE",driver.getTitle());
+		myScenario.write("User is on Overview page");
 		Take_A_Screenshot( driver, myScenario);
 	}
 	@Then("^User Navigated to My Account Page$")
@@ -68,7 +69,9 @@ public class Login extends KeyWordLibrary {
 		findElement(driver,Home_Page.UserName).sendKeys(ExcelUtil.Get(TestCaseID, username));
 //		driver.findElement(Home_Page.UserName).sendKeys(ExcelUtil.Get(TestCaseID, username));
 		driver.findElement(Home_Page.password).sendKeys(ExcelUtil.Get(TestCaseID, password));
+		myScenario.write("User entered username and password");
 		Take_A_Screenshot( driver, myScenario);
+		
 		driver.findElement(Home_Page.login).click();	
 		
 	}
