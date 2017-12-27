@@ -20,11 +20,13 @@ import cucumber.api.java.en.When;
 import cucumber.api.Scenario;
 import static org.junit.Assert.assertEquals;
 import Util.ExcelUtil;
+import cucumber.api.StepDefinitionReporter;
 import Library.KeyWordLibrary;
 
 public class Login extends KeyWordLibrary {
 	static WebDriver driver;
 	private Scenario myScenario;
+	private StepDefinitionReporter reporter;
 	@Before public void embedScreenshotStep(Scenario scenario)  {
 		System.out.println("started test");
 		myScenario = scenario;
@@ -33,7 +35,7 @@ public class Login extends KeyWordLibrary {
 	
 	@Given("^User is on Home Page$")
 	public void user_is_on_Home_Page() throws Throwable {
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\jitendermaan\\Downloads\\chromedriver_win32\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "C:\\Drivers\\chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -131,7 +133,7 @@ public class Login extends KeyWordLibrary {
 //	    throw new PendingException();
 		findElement(driver,Registration_Objects.Btn_Registration_Next_1).click();
 		Take_A_Screenshot( driver, myScenario);
-		
+//		reporter.stepDefinition("STEP FUNCTION");
 	}
 
 	@Then("^User will be navigated to Identify your sce account page$")
