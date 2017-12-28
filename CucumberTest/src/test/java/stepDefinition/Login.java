@@ -1,13 +1,8 @@
 package stepDefinition;
 
 import java.util.concurrent.TimeUnit;
-import org.hamcrest.CoreMatchers.*;
-import org.junit.Assert;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import Object_Repo.Home_Page;
 import Object_Repo.Registration_Objects;
 import cucumber.api.PendingException;
@@ -20,16 +15,19 @@ import cucumber.api.java.en.When;
 import cucumber.api.Scenario;
 import static org.junit.Assert.assertEquals;
 import Util.ExcelUtil;
-import cucumber.api.StepDefinitionReporter;
+//import cucumber.api.StepDefinitionReporter;
 import Library.KeyWordLibrary;
-
+import Library.DriverFactory;
 public class Login extends KeyWordLibrary {
 	static WebDriver driver;
 	private Scenario myScenario;
-	private StepDefinitionReporter reporter;
+	private String browser;
+//	private StepDefinitionReporter reporter;
 	@Before public void embedScreenshotStep(Scenario scenario)  {
 		System.out.println("started test");
 		myScenario = scenario;
+		browser=System.getProperty("BROWSER_NAME");
+		driver=new DriverFactory(browser).getDriver();
 	}
 	
 	
@@ -80,7 +78,6 @@ public class Login extends KeyWordLibrary {
 	}
 	@Then("^Error message displayed$")
 	public void error_message_displayed() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
 	    throw new PendingException();
 	}
 
@@ -91,8 +88,6 @@ public class Login extends KeyWordLibrary {
 	
 	@When("^User clicks on registration button$")
 	public void user_clicks_on_registration_button() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-//	    throw new PendingException();
 		findElement(driver,Registration_Objects.Btn_Registration).click();
 		
 		
@@ -100,8 +95,6 @@ public class Login extends KeyWordLibrary {
 
 	@Then("^User Navigates to Registration page$")
 	public void user_Navigates_to_Registration_page() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-//	    throw new PendingException();
 		 myScenario.write("Current Page URL is " + driver.getCurrentUrl());
 		    myScenario.write("User is on SCE Registration page");
 		    Take_A_Screenshot( driver, myScenario);
@@ -109,8 +102,6 @@ public class Login extends KeyWordLibrary {
 
 	@When("^User Enters First Name, Last Name$")
 	public void user_Enters_First_Name_Last_Name() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-//	    throw new PendingException();
 		findElement(driver,Registration_Objects.Txt_FirstName).sendKeys("FName");
 		findElement(driver,Registration_Objects.Txt_LastName).sendKeys("LName");
 		Take_A_Screenshot( driver, myScenario);
@@ -119,8 +110,6 @@ public class Login extends KeyWordLibrary {
 
 	@When("^user enters EMail address and Password$")
 	public void user_enters_EMail_address_and_Password() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-//	    throw new PendingException();
 		findElement(driver,Registration_Objects.Txt_emailAddress).sendKeys("email@gmail.com");
 		findElement(driver,Registration_Objects.Txt_RegisterPassword).sendKeys("Edison123");
 		findElement(driver,Registration_Objects.Txt_ConfirmPassword).sendKeys("Edison123");
@@ -129,17 +118,12 @@ public class Login extends KeyWordLibrary {
 
 	@When("^user click on Next$")
 	public void user_click_on_Next() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-//	    throw new PendingException();
 		findElement(driver,Registration_Objects.Btn_Registration_Next_1).click();
 		Take_A_Screenshot( driver, myScenario);
-//		reporter.stepDefinition("STEP FUNCTION");
 	}
 
 	@Then("^User will be navigated to Identify your sce account page$")
 	public void user_will_be_navigated_to_Identify_your_sce_account_page() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-//	    throw new PendingException();
 	    myScenario.write("Current Page URL is " + driver.getCurrentUrl());
 	    myScenario.write("User is on Identify your sce account page");
 	    Take_A_Screenshot( driver, myScenario);
@@ -147,6 +131,7 @@ public class Login extends KeyWordLibrary {
 	
 	@After
 	public void logout(Scenario scenario) {
+		new DriverFactory(browser).destroyDriver();
 //		final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
 //	      scenario.embed(screenshot, "image/png"); 
 		

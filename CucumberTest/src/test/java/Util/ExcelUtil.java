@@ -14,8 +14,8 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-//import com.Library.KeyWordLibrary;
-public class ExcelUtil{
+import Library.KeyWordLibrary;
+public class ExcelUtil extends KeyWordLibrary{
 	Workbook oWorkbook;
 	Sheet oSheet;
 	static Properties Pathproperties;
@@ -32,23 +32,23 @@ public class ExcelUtil{
 //		System.out.println("selected Row is "+slectedRow);
 //		return null;
 //	}
-	public static final String path="src\\test\\resources\\path.properties";
+//	public static final String path="src\\test\\resources\\path.properties";
 
 	/*function:getPath(String strPathName)
 	 * Used to fetch path from path.properties file
 	 * return : String value of path
 	 */
-	public static String getPath(String strPathName) {		
-		Pathproperties = new Properties();
-	      try {
-	      FileInputStream Master = new FileInputStream(path);
-	      Pathproperties.load(Master);
-	      Master.close();
-	          }catch (IOException e) {
-	           System.out.println(e.getMessage());
-	         }
-	      return Pathproperties.getProperty(strPathName);
-	}
+//	public static String getPath(String strPathName) {		
+//		Pathproperties = new Properties();
+//	      try {
+//	      FileInputStream Master = new FileInputStream(path);
+//	      Pathproperties.load(Master);
+//	      Master.close();
+//	          }catch (IOException e) {
+//	           System.out.println(e.getMessage());
+//	         }
+//	      return Pathproperties.getProperty(strPathName);
+//	}
 	
 	
 	public static Integer getColNumber(Sheet trgSheet,String strColName){
@@ -95,6 +95,7 @@ public class ExcelUtil{
 	}
 	
 	
+	@SuppressWarnings("deprecation")
 	public static Dictionary<String, Comparable> getDictionary(Sheet oSheet, int intRow){
 
 		Dictionary<String, Comparable> dict= new Hashtable<String, Comparable>();
