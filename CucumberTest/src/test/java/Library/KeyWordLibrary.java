@@ -26,7 +26,7 @@ public class KeyWordLibrary {
 	Properties properties;
 static Properties Pathproperties;
 	
-	public static final String path="src\\com\\DataRepository\\path.properties";
+public static final String path="src\\test\\resources\\path.properties";
 
 	/*function:getPath(String strPathName)
 	 * Used to fetch path from path.properties file
@@ -34,6 +34,8 @@ static Properties Pathproperties;
 	 */
 	public static String getPath(String strPathName) {		
 		Pathproperties = new Properties();
+		System.out.println("Inside Get path");
+		System.out.println(strPathName);
 	      try {
 	      FileInputStream Master = new FileInputStream(path);
 	      Pathproperties.load(Master);
@@ -41,6 +43,7 @@ static Properties Pathproperties;
 	          }catch (IOException e) {
 	           System.out.println(e.getMessage());
 	         }
+	      System.out.println(Pathproperties.getProperty(strPathName));
 	      return Pathproperties.getProperty(strPathName);
 	}
 	

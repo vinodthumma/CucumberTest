@@ -24,19 +24,16 @@ public class Login extends KeyWordLibrary {
 	private String browser;
 //	private StepDefinitionReporter reporter;
 	@Before public void embedScreenshotStep(Scenario scenario)  {
-		System.out.println("started test");
 		myScenario = scenario;
 		browser=System.getProperty("BROWSER_NAME");
-		driver=new DriverFactory(browser).getDriver();
+		driver=DriverFactory.createNewDriverInstance(browser);
 	}
 	
 	
 	@Given("^User is on Home Page$")
 	public void user_is_on_Home_Page() throws Throwable {
-		System.setProperty("webdriver.chrome.driver", "C:\\Drivers\\chromedriver.exe");
-		driver = new ChromeDriver();
 		driver.manage().window().maximize();
-				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	    driver.get("https://wwwsysc.sce.com");
 	    myScenario.write("Current Page URL is " + driver.getCurrentUrl());
 	    myScenario.write("User is on SCE HOME PAGE");
@@ -131,7 +128,7 @@ public class Login extends KeyWordLibrary {
 	
 	@After
 	public void logout(Scenario scenario) {
-		new DriverFactory(browser).destroyDriver();
+//		new DriverFactory(browser).destroyDriver();
 //		final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
 //	      scenario.embed(screenshot, "image/png"); 
 		
