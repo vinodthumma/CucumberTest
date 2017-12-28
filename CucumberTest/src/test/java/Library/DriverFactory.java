@@ -27,14 +27,14 @@ public class DriverFactory extends KeyWordLibrary{
     	
     	if (browser.equalsIgnoreCase("chrome")){
 //    		System.out.println("inside chrome");
-//    		String strBrowserPath=getPath("ChromeDriver");
+    		String strBrowserPath=getPath("ChromeDriver");
 //    		System.out.println(strBrowserPath);
-    		System.setProperty("webdriver.chrome.driver", "C:\\Drivers\\chromedriver.exe");
+    		System.setProperty("webdriver.chrome.driver",strBrowserPath);
     		driver = new ChromeDriver();
     	}
     	else if(browser.equalsIgnoreCase("firefox")) {
-//    		String strBrowserPath=getPath("GeckoDriver");
-    		System.setProperty("webdriver.gecko.driver", "C:\\Drivers\\geckodriver.exe");
+    		String strBrowserPath=getPath("GeckoDriver");
+    		System.setProperty("webdriver.gecko.driver",strBrowserPath);
     		driver = new FirefoxDriver();    		
     	}
     	else if(browser.equalsIgnoreCase("phantomjs")) {
@@ -46,13 +46,13 @@ public class DriverFactory extends KeyWordLibrary{
 
     	}
     	else if(browser.equalsIgnoreCase("IE")) {
-//    		String strBrowserPath=getPath("IEDriver");
-    		System.setProperty("webdriver.ie.driver", "C:\\Drivers\\ISDriverServer.exe");
+    		String strBrowserPath=getPath("IEDriver");
+    		System.setProperty("webdriver.ie.driver",strBrowserPath);
     		driver = new InternetExplorerDriver();
     	}
     	else {
-//    		String strBrowserPath=getPath("ChromeDriver");
-    		System.setProperty("webdriver.chrome.driver", "C:\\Drivers\\chromedriver.exe");
+    		String strBrowserPath=getPath("ChromeDriver");
+    		System.setProperty("webdriver.chrome.driver",strBrowserPath);
     		driver = new ChromeDriver();
     	}
 //        driver = new FirefoxDriver();
