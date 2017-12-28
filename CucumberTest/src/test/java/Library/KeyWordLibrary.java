@@ -51,13 +51,19 @@ public static final String path="src\\test\\resources\\path.properties";
 	
 public void WebElementClick(WebDriver driver,By locator){
 		
-		
+		findElement(driver,locator);
 		WebElement Element=(new WebDriverWait(driver,30)).until(ExpectedConditions.presenceOfElementLocated(locator));
 		Element= (new WebDriverWait(driver,30)).until(ExpectedConditions.elementToBeClickable(locator));
 		Element.click();
 	}
 
-
+public void WebEditText(WebDriver driver,By locator, String strVal){
+	
+	findElement(driver,locator);
+	WebElement Element=(new WebDriverWait(driver,10)).until(ExpectedConditions.presenceOfElementLocated(locator));
+	Element= (new WebDriverWait(driver,10)).until(ExpectedConditions.elementToBeClickable(locator));
+	Element.sendKeys(strVal);
+}
 
 
  public By getLocator(String ElementName) throws Exception {
@@ -102,20 +108,6 @@ public void WebElementClick(WebDriver driver,By locator){
      }
  }
 
- public WebElement getWebElement(final WebDriver driver,final By Locator) {
-//	 WebElement ele=driver.findElement(Locator);
-	 Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)                            
-			 .withTimeout(20, TimeUnit.SECONDS)          
-			 .pollingEvery(5, TimeUnit.SECONDS)          
-			 .ignoring(NoSuchElementException.class);    
-
-			   WebElement ele= wait.until(new Function<WebDriver, WebElement>() {       
-			 public WebElement apply(WebDriver driver) { 
-			 return driver.findElement(Locator);     
-			  }  
-			 });
-			return ele;
- }
  public static WebElement findElement(final WebDriver driver, final By locator) {
 	 System.out.println(locator);
 	    FluentWait<WebDriver> wait = new FluentWait<WebDriver>(driver)

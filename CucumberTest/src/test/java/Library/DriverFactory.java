@@ -63,7 +63,7 @@ public class DriverFactory extends KeyWordLibrary{
         return driver;
     }
 
-    public void destroyDriver() {
+    public static void destroyDriver() {
         driver.quit();
         driver = null;
     }

@@ -2,7 +2,6 @@ package stepDefinition;
 
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import Object_Repo.Home_Page;
 import Object_Repo.Registration_Objects;
 import cucumber.api.PendingException;
@@ -27,38 +26,28 @@ public class Login extends KeyWordLibrary {
 		myScenario = scenario;
 		browser=System.getProperty("BROWSER_NAME");
 		driver=DriverFactory.createNewDriverInstance(browser);
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	}
 	
 	
 	@Given("^User is on Home Page$")
 	public void user_is_on_Home_Page() throws Throwable {
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	    driver.get("https://wwwsysc.sce.com");
-	    myScenario.write("Current Page URL is " + driver.getCurrentUrl());
-	    myScenario.write("User is on SCE HOME PAGE");
-	    Take_A_Screenshot( driver, myScenario);
-	    
+		driver.get("https://wwwsysc.sce.com");
+	    myScenario.write("Current Page URL is " + driver.getCurrentUrl()+"\n User is on SCE HOME PAGE");
+	    Take_A_Screenshot( driver, myScenario); 
 	}
 
 
 	@Then("^User Navigated to Overview Page$")
 	public void user_Navigated_to_Profile_Page() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-		String a=driver.findElement(Home_Page.WebUserLinkAccount).getText();
-		System.out.println(a);
-		System.out.println(driver.getTitle());
 		assertEquals("Overview | My Account | Home - SCE",driver.getTitle());
 		myScenario.write("User is on Overview page");
 		Take_A_Screenshot( driver, myScenario);
 	}
 	@Then("^User Navigated to My Account Page$")
 	public void user_Navigated_to_My_Account_Page() throws Throwable {
-//		System.out.println(driver.getTitle());
-//		String a=driver.findElement(Home_Page.Title_Logout).getText();
-//		assertEquals("Billing & Payment",a);
-		assertEquals("Billing & Payment | Billing & Payments | My Account | Home - SCE",driver.getTitle());
-//	    throw new PendingException();
+	assertEquals("Billing & Payment | Billing & Payments | My Account | Home - SCE",driver.getTitle());
 	}
 	
 	@When("^User enters \"([^\"]*)\" and \"([^\"]*)\" for \"([^\"]*)\"$")
@@ -128,7 +117,7 @@ public class Login extends KeyWordLibrary {
 	
 	@After
 	public void logout(Scenario scenario) {
-//		new DriverFactory(browser).destroyDriver();
+		DriverFactory.destroyDriver();
 //		final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
 //	      scenario.embed(screenshot, "image/png"); 
 		
