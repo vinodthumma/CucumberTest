@@ -50,19 +50,27 @@ public static final String path="src\\test\\resources\\path.properties";
 	
 	
 public void WebElementClick(WebDriver driver,By locator){
-		
-		findElement(driver,locator);
-		WebElement Element=(new WebDriverWait(driver,30)).until(ExpectedConditions.presenceOfElementLocated(locator));
-		Element= (new WebDriverWait(driver,30)).until(ExpectedConditions.elementToBeClickable(locator));
-		Element.click();
+			try {
+			findElement(driver,locator);
+			WebElement Element=(new WebDriverWait(driver,30)).until(ExpectedConditions.visibilityOfElementLocated(locator));
+			Element= (new WebDriverWait(driver,30)).until(ExpectedConditions.elementToBeClickable(locator));
+			Element.click();
+		} catch (NoSuchElementException e) {
+			System.err.format("No Element Found to perform click" + e);
+		}
+
 	}
 
 public void WebEditText(WebDriver driver,By locator, String strVal){
-	
+		try {
 	findElement(driver,locator);
-	WebElement Element=(new WebDriverWait(driver,10)).until(ExpectedConditions.presenceOfElementLocated(locator));
-	Element= (new WebDriverWait(driver,10)).until(ExpectedConditions.elementToBeClickable(locator));
+	WebElement Element=(new WebDriverWait(driver,30)).until(ExpectedConditions.visibilityOfElementLocated(locator));
+	Element= (new WebDriverWait(driver,30)).until(ExpectedConditions.elementToBeClickable(locator));
 	Element.sendKeys(strVal);
+} 
+	catch (NoSuchElementException e) {
+	System.err.format("No Element Found to perform click" + e);
+}
 }
 
 
