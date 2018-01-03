@@ -26,7 +26,7 @@ public class DriverFactory extends KeyWordLibrary{
     	System.out.println(browser);
     	
     	if (browser.equalsIgnoreCase("chrome")){
-//    		System.out.println("inside chrome");
+    		System.out.println("inside chrome");
     		String strBrowserPath=getPath("ChromeDriver");
 //    		System.out.println(strBrowserPath);
     		System.setProperty("webdriver.chrome.driver",strBrowserPath);
