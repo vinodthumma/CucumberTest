@@ -40,13 +40,13 @@ public class Login extends KeyWordLibrary {
 	}
 
 
-	@SuppressWarnings("deprecation")
+//	@SuppressWarnings("deprecation")
 	@Then("^User Navigated to Overview Page$")
 	public void user_Navigated_to_Profile_Page() throws Throwable {
 		assertEquals("Overview | My Account | Home - SCE",driver.getTitle());
 		myScenario.write("User is on Overview page");
 		Take_A_Screenshot( driver, myScenario);
-		Assert.fail("This is a test result: failed to navigate to overview page");
+//		Assert.fail("This is a test result: failed to navigate to overview page");
 	}
 	@Then("^User Navigated to My Account Page$")
 	public void user_Navigated_to_My_Account_Page() throws Throwable {
